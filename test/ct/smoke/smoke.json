@@ -1,0 +1,27 @@
+{
+  "smoke_test_name": "canary-smoke-tests",
+  "default_base_url": "http://hms-canary/",
+  "test_paths": [
+    {
+      "path": "liveness",
+      "expected_status_code": 204,
+      "method": "GET",
+      "body": null,
+      "headers": {}
+    },
+    {
+      "path": "readiness",
+      "expected_status_code": 204,
+      "method": "GET",
+      "body": null,
+      "headers": {}
+    },
+    {
+      "path": "hello",
+      "expected_status_code": 200,
+      "method": "GET",
+      "body": null,
+      "headers": {}
+    }
+  ]
+}
