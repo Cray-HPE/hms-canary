@@ -31,13 +31,6 @@ stages:
       verify: !bool "{verify}"
     response:
       status_code: 204
-  - name: canaryAPILivenessPOST - Ensure that the canary liveness cannot be posted to
-    request:
-      url: "{canary_base_url}/liveness"
-      method: POST
-      verify: !bool "{verify}"
-    response:
-      status_code: 405
   - name: canaryAPIReadinessGET - Ensure that the canary readiness can be retrieved
     request:
       url: "{canary_base_url}/readiness"
@@ -45,11 +38,3 @@ stages:
       verify: !bool "{verify}"
     response:
       status_code: 204
-  - name: canaryAPIReadinessPOST - Ensure that the canary readiness cannot be posted to
-    request:
-      url: "{canary_base_url}/readiness"
-      method: POST
-      verify: !bool "{verify}"
-    response:
-      status_code: 405
-
