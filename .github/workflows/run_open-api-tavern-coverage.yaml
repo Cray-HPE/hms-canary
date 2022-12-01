@@ -10,5 +10,5 @@ jobs:
     with:
       open-api-file: "api/openapi.yaml"
       tavern-file-dir: "test/ct/api"
-      api-target-urls: "{sls_base_url}"
+      api-target-urls: "{canary_base_url}"
 
