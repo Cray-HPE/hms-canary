@@ -12,4 +12,5 @@ jobs:
       open-api-file: "api/openapi.yaml"
       tavern-file-dir: "test/ct/api"
       api-target-urls: "{canary_base_url}"
+    secrets: inherit
 

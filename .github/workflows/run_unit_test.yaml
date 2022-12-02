@@ -5,3 +5,4 @@ jobs:
     uses: Cray-HPE/hms-build-image-workflows/.github/workflows/run_unit_test.yaml@CASMHMS-5597
     with:
       runs-on: ubuntu-latest
+    secrets: inherit
