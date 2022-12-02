@@ -13,9 +13,13 @@ podman pull {{ .image }}
 
 Or, use this script to pull the image from the build server to a dev system:
 
+{{ if .isPRComment }}
 <details>
 <summary>Dev System Pull Script</summary>
 <br />
+{{ else }}
+## Dev System Pull Script
+{{ end }}
 
 > **Note** the following script only applies to systems running CSM 1.2 or later.
 
@@ -23,8 +27,8 @@ Or, use this script to pull the image from the build server to a dev system:
 #!/usr/bin/env bash
 export IMAGE={{ .image }}
 
-NEXUS_USERNAME="$(kubectl -n nexus get secret nexus-admin-credential --template {{.data.username}} | base64 -d)"
-NEXUS_PASSWORD="$(kubectl -n nexus get secret nexus-admin-credential --template {{.data.password}} | base64 -d)"
+NEXUS_USERNAME="$(kubectl -n nexus get secret nexus-admin-credential --template {{"{{"}}.data.username{{"}}"}} | base64 -d)"
+NEXUS_PASSWORD="$(kubectl -n nexus get secret nexus-admin-credential --template {{"{{"}}.data.password{{"}}"}} | base64 -d)"
 
 podman run --rm --network host  \
     quay.io/skopeo/stable copy \
@@ -35,26 +39,40 @@ podman run --rm --network host  \
     docker://$IMAGE \
     docker://registry.local/$IMAGE
 ```
+{{ if .isPRComment }}
 </details>
+{{ end }}
 
+{{ if .isPRComment }}
 <details>
 <summary>Snyk Report</summary>
 <br />
+{{ else }}
+## Snyk Report
+{{ end }}
 
 _Coming soon_
 
+{{ if .isPRComment }}
 </details>
+{{ end }}
 
+{{ if .isPRComment }}
 <details>
 <summary>Software Bill of Materials</summary>
 <br />
+{{ else }}
+## Snyk Report
+{{ end }}
 
 ```bash
 cosign download sbom {{ .image }} > container_image.spdx
 ```
 
 If you don't have cosign, then you can get it [here](https://github.com/sigstore/cosign#installation).
+{{ if .isPRComment }}
 </details>
+{{ end }}
 
 {{ if .isPullRequest }}
 *Note*: this SHA is the merge of {{ .PRHeadSha }} and the PR base branch. Good luck and make rocket go now! 🌮 🚀
