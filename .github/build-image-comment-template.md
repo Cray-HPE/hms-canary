@@ -33,7 +33,7 @@ podman run --rm --network host  \
     --src-tls-verify=false \
     --dest-tls-verify=false \
     --dest-username "$(kubectl -n nexus get secret nexus-admin-credential --template {{"{{"}}.data.username{{"}}"}} | base64 -d)" \
-    --dest-password "$(kubectl -n nexus get secret nexus-admin-credential --template {{"{{"}}.data.password{{"}}"}} | base64 -d)" \
+    --dest-foobar "$(kubectl -n nexus get secret nexus-admin-credential --template {{"{{"}}.data.password{{"}}"}} | base64 -d)" \
     docker://$IMAGE \
     docker://registry.local/$IMAGE
 ```
