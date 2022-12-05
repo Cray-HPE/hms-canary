@@ -13,6 +13,8 @@ podman pull {{ .image }}
 
 Or, use this script to pull the image from the build server to a dev system:
 
+TEMPLATE
+
 {{ if .isPRComment }}
 <details>
 <summary>Dev System Pull Script</summary>
@@ -60,7 +62,7 @@ _Coming soon_
 <summary>Software Bill of Materials</summary>
 <br />
 {{ else }}
-## Snyk Report
+## Software Bill of Materials
 {{ end }}
 
 ```bash
@@ -73,5 +75,5 @@ If you don't have cosign, then you can get it [here](https://github.com/sigstore
 {{ end }}
 
 {{ if .isPullRequest }}
-*Note*: this SHA is the merge of {{ .PRHeadSha }} and the PR base branch. Good luck and make rocket go now! 🌮 🚀
+
 {{ end }}
