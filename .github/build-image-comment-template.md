@@ -25,17 +25,15 @@ Or, use this script to pull the image from the build server to a dev system:
 
 ```bash
 #!/usr/bin/env bash
-export IMAGE={{ .image }}
 
-NEXUS_USERNAME="$(kubectl -n nexus get secret nexus-admin-credential --template {{"{{"}}.data.username{{"}}"}} | base64 -d)"
-NEXUS_PASSWORD="$(kubectl -n nexus get secret nexus-admin-credential --template {{"{{"}}.data.password{{"}}"}} | base64 -d)"
+IMAGE={{ .image }}
 
 podman run --rm --network host  \
     quay.io/skopeo/stable copy \
     --src-tls-verify=false \
     --dest-tls-verify=false \
-    --dest-username $NEXUS_USERNAME \
-    --dest-password $NEXUS_PASSWORD \
+    --dest-username "$(kubectl -n nexus get secret nexus-admin-credential --template {{"{{"}}.data.username{{"}}"}} | base64 -d)" \
+    --dest-password "$(kubectl -n nexus get secret nexus-admin-credential --template {{"{{"}}.data.password{{"}}"}} | base64 -d)" \
     docker://$IMAGE \
     docker://registry.local/$IMAGE
 ```
