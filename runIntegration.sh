@@ -1,4 +1,4 @@
-runIntegration.sh #!/usr/bin/env bash
+#!/usr/bin/env bash
 
 #
 # MIT License
