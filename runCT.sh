@@ -43,7 +43,7 @@ function cleanup() {
 }
 
 # Lets see if a docker image from a private repo can be pulled
-if ! docker pull artifactory.algol60.net/csm-docker-private/stable/csm-docker-sle-python:3.10; then
+if ! docker pull artifactory.algol60.net/csm-docker-private/docker.io/library/alpine:latest; then
   echo "Failed to pull private docker image"
   cleanup 1
 fi
