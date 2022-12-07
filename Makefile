@@ -33,6 +33,9 @@ image:
 unittest:
 	./runUnitTest.sh
 
+integration:
+	./runIntegration.sh
+
 snyk:
 	./runSnyk.sh
 

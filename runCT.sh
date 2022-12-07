@@ -42,6 +42,11 @@ function cleanup() {
   exit $1
 }
 
+# Lets see if a docker image from a private repo can be pulled
+if ! docker pull artifactory.algol60.net/csm-docker-private/stable/csm-docker-sle-python:3.10; then
+  echo "Failed to pull private docker image"
+  cleanup 1
+fi
 
 # Get the base containers running
 echo "Starting containers..."

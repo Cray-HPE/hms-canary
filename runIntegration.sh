@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
+
+#
 # MIT License
 #
-# (C) Copyright [2021] Hewlett Packard Enterprise Development LP
+# (C) Copyright [2022] Hewlett Packard Enterprise Development LP
 #
 # Permission is hereby granted, free of charge, to any person obtaining a
 # copy of this software and associated documentation files (the "Software"),
@@ -20,23 +22,53 @@
 # OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
 # ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 # OTHER DEALINGS IN THE SOFTWARE.
+#
+set -x
 
-test_result=0
+#
+# TODO this is just a copy of the CT test stuff
+#
+
+# Configure docker compose
+export COMPOSE_PROJECT_NAME=$RANDOM
+export COMPOSE_FILE=docker-compose.test.ct.yaml
+
+echo "COMPOSE_PROJECT_NAME: ${COMPOSE_PROJECT_NAME}"
+echo "COMPOSE_FILE: $COMPOSE_FILE"
+
+function cleanup() {
+  echo "Cleaning up containers..."
+  if ! docker compose down --remove-orphans; then
+    echo "Failed to decompose environment!"
+    exit 1
+  fi
+  exit $1
+}
 
 # Lets see if a docker image from a private repo can be pulled
-docker pull artifactory.algol60.net/csm-docker-private/stable/csm-docker-sle-python:3.10
-
-# Build the build base image (if it's not already)
-docker build -t cray/canary-base --target base .
-
-# Run the tests.
-DOCKER_BUILDKIT=0 docker build -t cray/canary-unit-testing -f Dockerfile.testing --no-cache .
-build_result=$?
-if [ $build_result -ne 0 ]; then
-  echo "Unit tests failed!"
-  test_result=$build_result
-else
-  echo "Unit tests passed!"
+# Lets see if a docker image from a private repo can be pulled
+if ! docker pull artifactory.algol60.net/csm-docker-private/stable/csm-docker-sle-python:3.10; then
+  echo "Failed to pull private docker image"
+  cleanup 1
 fi
 
-exit $test_result
+# Get the base containers running
+echo "Starting containers..."
+docker compose build --no-cache
+docker compose up -d hms-canary
+
+sleep 10
+if ! docker compose up --exit-code-from smoke smoke; then
+  echo "CT smoke tests FAILED!"
+  cleanup 1
+fi
+
+# execute the CT functional tests
+if ! docker compose up --exit-code-from tavern tavern; then
+  echo "CT tavern tests FAILED!"
+  cleanup 1
+fi
+
+# Cleanup
+echo "CT tests PASSED!"
+cleanup 0
