@@ -25,6 +25,9 @@ services:
     build: .
     networks:
       - canary
+    depends_on:
+    - s3
+    - private-image
 
   # Start up some services. For right now just want to pull artifacts from algol60
   s3:
