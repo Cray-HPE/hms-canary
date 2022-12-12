@@ -25,6 +25,9 @@ services:
     build: .
     networks:
       - canary
+    depends_on:
+    - s3
+    - private-image
 
   # Start up some services. For right now just want to pull artifacts from algol60
   s3:
@@ -49,4 +52,7 @@ services:
     networks:
       - canary
 
+
+  private-image:
+    image: artifactory.algol60.net/csm-docker-private/stable/csm-docker-sle-python:3.10
 
