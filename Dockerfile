@@ -23,7 +23,7 @@
 # Dockerfile for building HMS Canary.
 
 # Build base just has the packages installed we need.
-FROM artifactory.algol60.net/csm-docker/docker.io/library/golang:1.18-alpine AS build-base
+FROM artifactory.algol60.net/docker.io/library/golang:1.18-alpine AS build-base
 
 RUN set -ex \
     && apk -U upgrade \
@@ -47,7 +47,7 @@ RUN set -ex \
 
 ### Final Stage ###
 
-FROM artifactory.algol60.net/csm-docker/docker.io/library/alpine:latest
+FROM artifactory.algol60.net/csm-docker/stable/docker.io/library/alpine:3.15
 LABEL maintainer="Hewlett Packard Enterprise"
 STOPSIGNAL SIGTERM
 EXPOSE 9088

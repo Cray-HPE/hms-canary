@@ -45,13 +45,6 @@ function cleanup() {
   exit $1
 }
 
-# Lets see if a docker image from a private repo can be pulled
-# Lets see if a docker image from a private repo can be pulled
-if ! docker pull artifactory.algol60.net/csm-docker/docker.io/library/alpine:latest; then
-  echo "Failed to pull private docker image"
-  cleanup 1
-fi
-
 # Get the base containers running
 echo "Starting containers..."
 docker compose build --no-cache
