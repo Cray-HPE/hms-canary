@@ -54,5 +54,5 @@ services:
 
 
   private-image:
-    image: artifactory.algol60.net/csm-docker-private/stable/csm-docker-sle-python:3.10
+    image: artifactory.algol60.net/csm-docker/stable/csm-docker-sle-python:3.10
 
