@@ -5,9 +5,7 @@ on:
   - workflow_dispatch
 jobs:
   build_and_release:
-    # TODO
-    uses: Cray-HPE/open-api-tavern-coverage/.github/workflows/run_open-api-tavern-coverage.yaml@CASMHMS-6042-self-hosted-runner
-    #the v1 tag exists now
+    uses: Cray-HPE/open-api-tavern-coverage/.github/workflows/run_open-api-tavern-coverage.yaml@v2
     with:
       open-api-file: "api/openapi.yaml"
       tavern-file-dir: "test/ct/api"
