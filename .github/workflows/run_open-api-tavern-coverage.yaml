@@ -6,7 +6,7 @@ on:
 jobs:
   build_and_release:
     # TODO
-    uses: Cray-HPE/open-api-tavern-coverage/.github/workflows/run_open-api-tavern-coverage.yaml@v2
+    uses: Cray-HPE/open-api-tavern-coverage/.github/workflows/run_open-api-tavern-coverage.yaml@CASMHMS-6042-self-hosted-runner
     #the v1 tag exists now
     with:
       open-api-file: "api/openapi.yaml"
