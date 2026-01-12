@@ -319,7 +319,6 @@ If you find issues with hms-canary:
 
 ## For More Information
 
-- [HMS Build System Overview](https://github.com/Cray-HPE/hms-architecture/blob/develop/build/HMS_Build_System_Overview.md) - High-level architecture documentation
 - [hms-build-image-workflows README](https://github.com/Cray-HPE/hms-build-image-workflows/blob/main/README.md) - Detailed workflow documentation
 - [hms-build-metadata-action README](https://github.com/Cray-HPE/hms-build-metadata-action/blob/main/README.md) - Metadata action documentation
 - [hms-build-environment README](https://github.com/Cray-HPE/hms-build-environment/blob/main/README.md) - Build environment documentation
