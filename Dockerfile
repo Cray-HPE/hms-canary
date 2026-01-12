@@ -43,7 +43,7 @@ FROM base AS builder
 
 # Now build
 RUN set -ex \
-    && go build -v -i -o canary github.com/Cray-HPE/hms-canary/cmd/canary
+    && go build -v -o canary github.com/Cray-HPE/hms-canary/cmd/canary
 
 ### Final Stage ###
 
