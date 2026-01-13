@@ -21,7 +21,6 @@ Use this repository to test changes to:
 
 - **hms-build-image-workflows** - Container image build and release workflows
 - **hms-build-metadata-action** - Build metadata generation for images
-- **hms-build-environment** - Base container image for builds
 - **hms-nightly-integration** - Nightly integration test workflows
 - **hms-build-workflow-dispatcher** - Workflow dispatch and scheduling logic
 
