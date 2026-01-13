@@ -167,40 +167,11 @@ Note: For chart building action tests, also see [hms-canary-charts](https://gith
 
 3. **Push and test as described above**
 
-### Example: Testing Changes to hms-build-environment
-
-**Scenario:** You've updated the base build environment image and want to test it's still compatible.
-
-1. **Create a test branch:**
-   ```bash
-   git checkout -b test/build-environment-update
-   ```
-
-2. **Update workflows to reference the new environment image version:**
-   ```yaml
-   container:
-     image: artifactory.algol60.net/csm-docker/stable/hms-build-environment:1.1.0
-   ```
-
-3. **Build locally to test:**
-   ```bash
-   make image
-   ```
-
-4. **Run test suites:**
-   ```bash
-   make all
-   ```
-
-5. **Fix any compatibility issues found**
-
-6. **Push and run full CI pipeline as described above**
-
 ## Important Notes
 
 ### Credentials and Secrets
 
-The `.github/workflows/` files reference secrets that must be available in your repository:
+The `.github/workflows/` files reference secrets that must be available in respective repositories:
 
 - `SNYK_TOKEN` - For vulnerability scanning
 - `ARTIFACTORY_ALGOL60_USERNAME` - For publishing to Artifactory
@@ -224,7 +195,16 @@ Note: By default, hms-canary produces unstable builds. To produce stable builds,
 
 ### Version Management
 
-The version of hms-canary is stored in the `.version` file at the repository root. Update this when making significant changes to the canary service:
+The version of hms-canary is stored in the `.version` file at the repository root. 
+
+Use semantic versioning in the `.version` file:
+- **MAJOR** - Breaking changes (e.g., 1.0.0 → 2.0.0)
+- **MINOR** - New features (e.g., 1.0.0 → 1.1.0)
+- **PATCH** - Bug fixes (e.g., 1.0.0 → 1.0.1)
+
+Update this when making significant changes to the canary service:
+
+Example Usage:
 
 ```bash
 echo "1.2.3" > .version
