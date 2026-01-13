@@ -32,7 +32,7 @@ Use this repository to test changes to:
 ### Prerequisites
 
 - **Docker** (for building images and running tests)
-- **Go 1.16+** (for running unit tests and building locally)
+- **Go 1.19** (for running unit tests and building locally)
 - **Helm 3.10.0+** (for Helm-related tests)
 - **chart-testing 3.4.0+** (for chart validation tests)
 - **make** command
