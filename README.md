@@ -197,8 +197,8 @@ Note: By default, hms-canary produces unstable builds. To produce stable builds,
 The version of hms-canary is stored in the `.version` file at the repository root. 
 
 Use semantic versioning in the `.version` file:
-- **MAJOR** - Breaking changes (e.g., 1.0.0 → 2.0.0)
-- **MINOR** - New features (e.g., 1.0.0 → 1.1.0)
+- **MAJOR** - Breaking changes or New features (e.g., 1.0.0 → 2.0.0)
+- **MINOR** - Small Changes (e.g., 1.0.0 → 1.1.0)
 - **PATCH** - Bug fixes (e.g., 1.0.0 → 1.0.1)
 
 Update this when making significant changes to the canary service:
