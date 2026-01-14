@@ -24,7 +24,7 @@
 test_result=0
 
 # Lets see if a docker image from a private repo can be pulled
-docker pull artifactory.algol60.net/csm-docker/stable/csm-docker-sle-python:3.10
+docker pull artifactory.algol60.net/csm-docker/stable/csm-docker-sle-python:3.13
 
 # Build the build base image (if it's not already)
 docker build -t cray/canary-base --target base .
